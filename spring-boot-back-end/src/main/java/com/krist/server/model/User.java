@@ -49,13 +49,13 @@ public class User {
     @Size(max = 50)
     @Email
     private String email;
+    
+    @NotBlank
+    private String photo;
 
     @NotBlank
     @Size(min = 6, max = 100)
     private String password;
-    
-    @NotBlank
-    private String photo;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles", 
@@ -65,13 +65,13 @@ public class User {
 
     public User() {}
 
-    public User( String name, String surname, String username, String email, String password, String photo ) {
+    public User( String name, String surname, String username, String email, String photo, String password ) {
         this.name = name;
         this.surname = surname;
         this.username = username;
         this.email = email;
-        this.password = password;
         this.photo = photo;
+        this.password = password;
     }
 
 	public Long getId() {
@@ -113,6 +113,14 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 
 	public String getPassword() {
 		return password;
@@ -120,14 +128,6 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getPhoto() {
-		return photo;
-	}
-
-	public void setPhoto(String photo) {
-		this.photo = photo;
 	}
 
 	public Set<Role> getRoles() {

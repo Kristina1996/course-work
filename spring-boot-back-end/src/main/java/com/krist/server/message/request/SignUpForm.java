@@ -28,11 +28,11 @@ public class SignUpForm {
     private Set<String> role;
     
     @NotBlank
-    @Size(min = 6, max = 40)
-    private String password;
+    private String photo;
     
     @NotBlank
-    private String photo;
+    @Size(min = 6, max = 40)
+    private String password;
     
 
 	public String getName() {
@@ -74,6 +74,14 @@ public class SignUpForm {
 	public void setRole(Set<String> role) {
 		this.role = role;
 	}
+	
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 
 	public String getPassword() {
 		return password;
@@ -81,13 +89,5 @@ public class SignUpForm {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getPhoto() {
-		return photo;
-	}
-
-	public void setPhoto(String photo) {
-		this.photo = photo;
 	}
 }
