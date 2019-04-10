@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+
+.m-b-18px{ margin-bottom: 18px; }
+.m-r-5px{ margin-right: 5px; }
+.w-40-pct{ width: 40%; }
+.text-align-center{ text-align: center; }
+
+.flex-container {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	align-items: stretch;
+}
+/*
+.header {
+	background: #343a40;
+	height: 56px;
+}
+*/
+.content {
+	color: darkslategrey;
+	flex-grow: 1;
+}
+
+.footer {
+	margin-top: auto;
+	background: #e6e6e6;
+	height: 65px;
+	width: 100%;
+	position: relative;
+	bottom: 0;
+}
