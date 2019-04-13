@@ -31,4 +31,9 @@ export class AppComponent {
 			});
 		}
 	}
+	
+	logout() {
+		this.tokenStorage.signOut();
+		window.location.reload();
+	}
 }

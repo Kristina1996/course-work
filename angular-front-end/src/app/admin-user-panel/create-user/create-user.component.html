@@ -1,0 +1,121 @@
+<p>
+  create-user works!
+</p>
+
+<div class="row">
+        <div class="col-md-12">
+            <div class='page-header'><h1>{{title}}</h1></div>
+        </div>
+</div>
+
+
+<div class="form-create-user row">
+	
+	<form [formGroup]="create_user_form" (ngSubmit)="createUser()" id="form-group">
+
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label text-right"> Name *</label>
+			<div class="col-sm-6">
+				<input formControlName="name"
+						type='text' name='name'
+					   class='form-control' required />
+			</div>
+			<div *ngIf="create_user_form.get('name').touched && create_user_form.get('name').hasError('required')" class="col-sm-2" id="text-alert">
+				<small class="text-danger">
+					Поле не заполнено
+				</small>
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label text-right"> Surname *</label>
+			<div class="col-sm-6">
+				<input formControlName="surname"
+						type='text' name='surname'
+						class='form-control' required />
+			</div>
+			<div *ngIf="create_user_form.get('surname').touched && create_user_form.get('surname').hasError('required')" class="col-sm-2">
+				<small class="text-danger">
+					Поле не заполнено
+				</small>
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label text-right"> Username *</label>
+			<div class="col-sm-6">
+				<input formControlName="username"
+						type='text' name='username'
+						class='form-control' required />
+			</div>
+			<div *ngIf="create_user_form.get('username').touched && create_user_form.get('username').hasError('required')" class="col-sm-2">
+				<small class="text-danger">
+					Поле не заполнено
+				</small>
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label text-right"> Email *</label>
+			<div class="col-sm-6">
+				<input formControlName="email"
+						type='text' name='email'
+						class='form-control' required />
+			</div>
+			<div *ngIf="create_user_form.get('email').touched && create_user_form.get('email').hasError('required')" class="col-sm-2">
+				<small class="text-danger">
+					Поле не заполнено
+				</small>
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label text-right"> Photo </label>
+			<div class="col-sm-6">
+				<input formControlName="photo"
+						type='text' name='photo'
+						class='form-control' required />
+			</div>
+			<div *ngIf="create_user_form.get('photo').touched && create_user_form.get('photo').hasError('required')" class="col-sm-2">
+				<small class="text-danger">
+					Поле не заполнено
+				</small>
+			</div>
+		</div>
+		
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label text-right"> Password </label>
+			<div class="col-sm-6">
+				<input formControlName="password"
+						type='text' name='password'
+						class='form-control' required />
+			</div>
+			<div *ngIf="create_user_form.get('password').touched && create_user_form.get('password').hasError('required')" class="col-sm-2">
+				<small class="text-danger">
+					Поле не заполнено
+				</small>
+			</div>
+		</div>
+		
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label text-right"> Role </label>
+			<div class="col-sm-6">
+				<input formControlName="role"
+						type='text' name='role'
+						class='form-control' required />
+			</div>
+			<div *ngIf="create_user_form.get('role').touched && create_user_form.get('role').hasError('required')" class="col-sm-2">
+				<small class="text-danger">
+					Поле не заполнено
+				</small>
+			</div>
+		</div>
+
+	</form>
+</div>
+
+<div class="buttons">
+	<button class="btn btn-primary" (click)="goBack()" id="goBack">Назад</button>
+	<button class="btn btn-secondary" (click)="resetForm()" id="resetForm">Сбросить</button>
+	<button class="btn btn-success" (click)="save()" id="save">Сохранить</button>
+</div>

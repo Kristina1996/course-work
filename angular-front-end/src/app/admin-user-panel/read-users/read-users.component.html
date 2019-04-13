@@ -1,0 +1,46 @@
+<p>
+  read-users works!
+</p>
+
+<!-- Заголовок страницы -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class='page-header'><h1>{{title}}</h1></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <button class='btn btn-primary pull-right' id="btn-openSettings" (click)="show = !show">Настройки</button>
+		<a routerLink="/createuser" class="btn-create"> Создать</a>
+    </div>
+	
+<div class="container">
+    <div class="row">
+        <table class='table table-hover table-responsive table-bordered'>
+            <tr>
+				<th class="text-center"> Name </th>
+				<th class="text-center"> Surname </th>
+				<th class="text-center"> Username </th>
+				<th class="text-center"> Email </th>
+				<th class="text-center"> Role </th>
+				<th class="text-center"> Photo </th>
+				<th class="text-center"> Action </th>
+            </tr>
+
+            <tr *ngFor="let user of users">
+				<td class="text-center"> {{user.name}} </td>
+				<td class="text-center"> {{user.surname}} </td>
+				<td class="text-center"> {{user.username}} </td>
+				<td class="text-center"> {{user.email}} </td>
+				<td class="text-center"> {{user.role}} </td>
+				<td class="text-center"> {{user.photo}} </td>
+				
+                <td class="text-center">
+                    <a routerLink="/edituser/{{user.id}}" class="btn-edit"> </a>
+					<button (click)="deleteUser(user)"> Delete</button>
+                </td>
+                  
+            </tr>
+        </table>
+    </div>
+</div>
