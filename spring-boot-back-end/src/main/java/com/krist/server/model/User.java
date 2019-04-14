@@ -19,8 +19,10 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.NaturalId;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.krist.server.model.Role;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Table(name = "users", uniqueConstraints = {
         @UniqueConstraint(columnNames = { "username" }),

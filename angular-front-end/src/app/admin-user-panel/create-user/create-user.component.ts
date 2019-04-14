@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { UserService }  from '../../service/user.service';
-import { User } from '../user';
+import { User } from '../../model/user';
 
 @Component({
 	selector: 'app-create-user',
@@ -42,7 +42,8 @@ export class CreateUserComponent implements OnInit {
      */
 	save() {
 		
-        this.userService.createUser(this.create_user_form.value)
+        //this.userService.createUser(this.create_user_form.value)
+		this.userService.registerUser(this.create_user_form.value)
             .subscribe(
                 user => {
                    this.goBack();

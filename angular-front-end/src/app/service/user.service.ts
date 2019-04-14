@@ -3,16 +3,23 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable} from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { User } from '../model/user';
+
+const httpOptions = {
+	headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
 	providedIn: 'root'
 })
 export class UserService {
 	
-	 private userUrl = 'http://localhost:8080/users';
+	private userUrl = 'http://localhost:8080/users';
+	private registerUserURL = 'http://localhost:8080/auth/signup';
+	private getUserURL = 'http://localhost:8080/user/';
+	private updateUserURL = 'http://localhost:8080/update';
 
 	//constructor(private _http: Http) { }
 	constructor(private _http: HttpClient) { }
@@ -25,6 +32,7 @@ export class UserService {
 		return this._http.get(this.userUrl, { responseType: 'json' });
     }
 	
+	/*
 	createUser(user): Observable<User> {
 		let headers = new Headers({ 'Content-Type': 'application/json' });
 		let options = new RequestOptions({ headers: headers });
@@ -35,6 +43,13 @@ export class UserService {
 			options
 		).pipe(map((res: Response) => res.json()));
 	}
+	*/
+	
+	registerUser(user: User): Observable<string> {
+		user.role = ['user'];
+		console.log(user.role);
+		return this._http.post<string>(this.registerUserURL, user, httpOptions);
+	}
 	
 	getUserswithPage(page: number): Observable<User[]> {
 		return this._http.get("http://api/dao/getUserswithPage.php?page="+page)
@@ -42,11 +57,12 @@ export class UserService {
 	}
 	
 	getUser(id): Observable<User> {
-		return this._http.get("http://localhost:8084/rest-service/user/"+id)
-			.pipe(map((res: Response) => res.json()));
+		
+		return this._http.get(this.getUserURL+id, { responseType: 'json' });
 	}
 	
 	updateUser(user) {
+		/*
 		let headers = new Headers({ 'Content-Type': 'application/json' });
 		let options = new RequestOptions({ headers: headers });
 		
@@ -55,10 +71,14 @@ export class UserService {
 			user,
 			options
 		).pipe(map((res: Response) => res.json()));
+		*/
+		user.role = ['user'];
+		return this._http.post<string>(this.updateUserURL, user, httpOptions);
 	}
 	
 	deleteUser(id) {
 		console.log(id);
+		/*
 		let headers = new Headers({ 'Content-Type': 'application/json' });
 		let options = new RequestOptions({ headers: headers });
 		
@@ -66,5 +86,7 @@ export class UserService {
 			"http://localhost:8084/rest-service/users/"+id,
 			options
 		);
+		*/
+		return this._http.delete("http://localhost:8080/users/"+id, httpOptions);
 	}
 }
