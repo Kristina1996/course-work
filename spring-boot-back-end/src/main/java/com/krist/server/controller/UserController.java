@@ -42,14 +42,14 @@ public class UserController {
 	}
 	
 	
-	
+	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(value = "/users", method = RequestMethod.GET)
     @ResponseBody
     public List<User> getAllUsers() {
         return service.getAllUsers();
     }
 
-	//@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
     @ResponseBody
     public User getUser(@PathVariable("id") Long id) {

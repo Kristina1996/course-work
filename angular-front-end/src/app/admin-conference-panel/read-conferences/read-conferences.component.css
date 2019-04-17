@@ -1,0 +1,8 @@
+.btn-edit {
+    background-image: url("edit1.png");
+    display: inline-block;
+    background-size: contain;
+    min-height: 22px;
+    min-width: 22px;
+    cursor: pointer;
+}

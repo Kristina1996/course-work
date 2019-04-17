@@ -3,21 +3,21 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { UserService }  from '../../service/user.service';
-import { User } from '../../model/user';
+import { CategoryService }  from '../../service/category.service';
+import { Category } from '../../model/category';
 
 @Component({
-	selector: 'app-edit-user',
-	templateUrl: './edit-user.component.html',
-	styleUrls: ['./edit-user.component.css'],
-	providers: [ UserService ]
+	selector: 'app-edit-category',
+	templateUrl: './edit-category.component.html',
+	styleUrls: ['./edit-category.component.css'],
+	providers: [ CategoryService ]
 })
-export class EditUserComponent implements OnInit {
-
-	update_user_form: FormGroup;
-	title = 'Edit user';
+export class EditCategoryComponent implements OnInit {
 	
-	@Input() user: User;
+	update_category_form: FormGroup;
+	title = 'Edit category';
+	
+	@Input() category: Category;
 	@Input() id;
 
     /**
@@ -34,44 +34,31 @@ export class EditUserComponent implements OnInit {
 	}
 	*/
 
-    /**
-	 * Метод для отображения инпута "ИНН"
-     */
-	newFunction() {
-		if (this.update_user_form.value.check) {
-			return true;
-		} else { return false; }
-	}
-
 	constructor(
 		private route: ActivatedRoute,
-		private userService: UserService,
+		private categoryService: CategoryService,
 		private location: Location,
 		private formBuilder: FormBuilder
 	) {
-		this.update_user_form = this.formBuilder.group({
+		this.update_category_form = this.formBuilder.group({
             name: ['', Validators.required],
-            surname: ['', Validators.required],
-			username: ['', Validators.required],
-            email: ['', Validators.required],
-            photo: ['', Validators.required],
-			role: ['', Validators.required],
-			password: ['', Validators.required]
+            description: ['', Validators.required]
         });
 	}
 
 	ngOnInit() {
-		this.getUser();
+		this.getCategory();
 		this.resetForm();
 	}
 
     /**
 	 * Получение данных о выбранном пользователе с бэка
      */
-	getUser(): void {
+	getCategory(): void {
 		const id = +this.route.snapshot.paramMap.get('id');
-		this.userService.getUser(id)
-		.subscribe(user => this.user = user);
+		this.categoryService.getCategory(id)
+			.subscribe(category => this.category = category);
+		console.log(id, this.category);
 	}
 
     /**
@@ -87,17 +74,11 @@ export class EditUserComponent implements OnInit {
 	resetForm(): void {
 		const id = +this.route.snapshot.paramMap.get('id');
 
-        this.userService.getUser(id)
-            .subscribe(user => {
-                // Закладка данных в форму
-                this.update_user_form.patchValue({
-                    name: user.name,
-                    surname: user.surname,
-                    username: user.username,
-					password: user.password,
-					email: user.email,
-					photo: user.photo,
-					role: user.role
+        this.categoryService.getCategory(id)
+            .subscribe(category => {
+                this.update_category_form.patchValue({
+                    name: category.name,
+                    description: category.description
                 });
             });
 	}
@@ -108,23 +89,13 @@ export class EditUserComponent implements OnInit {
 	save() {
 		const id = +this.route.snapshot.paramMap.get('id');
 		
-		this.userService.getUser(id)
-            .subscribe(user => {
-                this.update_user_form.patchValue({
-                    password: user.password
-                });
-            });
-		
-		console.log(this.update_user_form.value);
-		
-		this.update_user_form.value.id = id;
-        this.userService.updateUser(this.update_user_form.value)
+		this.update_category_form.value.id = id;
+        this.categoryService.updateCategory(this.update_category_form.value)
             .subscribe(
-                 user => {
+                 category => {
                     this.goBack();
                  },
                  error => console.log(error)
              );
 	}
-
 }

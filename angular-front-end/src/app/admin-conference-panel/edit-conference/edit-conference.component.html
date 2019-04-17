@@ -1,17 +1,17 @@
 <p>
-  create-user works!
+  Edit conference component works!
 </p>
 
 <div class="row">
-        <div class="col-md-12">
-            <div class='page-header'><h1>{{title}}</h1></div>
-        </div>
+    <div class="col-md-12">
+        <div class='page-header'><h1>{{title}}</h1></div>
+    </div>
 </div>
 
 
-<div class="form-create-user row">
+<div *ngIf="conference" class="form-update-conference row">
 	
-	<form [formGroup]="create_user_form" (ngSubmit)="save()" id="form-group">
+	<form [formGroup]="update_conference_form" (ngSubmit)="save()" id="form-group">
 
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label text-right"> Name *</label>
@@ -20,7 +20,7 @@
 						type='text' name='name'
 					    class='form-control' required />
 			</div>
-			<div *ngIf="create_user_form.get('name').touched && create_user_form.get('name').hasError('required')" class="col-sm-2" id="text-alert">
+			<div *ngIf="update_conference_form.get('name').touched && update_conference_form.get('name').hasError('required')" class="col-sm-2" id="text-alert">
 				<small class="text-danger">
 					Field is empty
 				</small>
@@ -34,7 +34,7 @@
 						type='text' name='surname'
 						class='form-control' required />
 			</div>
-			<div *ngIf="create_user_form.get('surname').touched && create_user_form.get('surname').hasError('required')" class="col-sm-2">
+			<div *ngIf="update_conference_form.get('surname').touched && update_conference_form.get('surname').hasError('required')" class="col-sm-2">
 				<small class="text-danger">
 					Field is empty
 				</small>
@@ -48,7 +48,21 @@
 						type='text' name='username'
 						class='form-control' required />
 			</div>
-			<div *ngIf="create_user_form.get('username').touched && create_user_form.get('username').hasError('required')" class="col-sm-2">
+			<div *ngIf="update_user_form.get('username').touched && update_user_form.get('username').hasError('required')" class="col-sm-2">
+				<small class="text-danger">
+					Field is empty
+				</small>
+			</div>
+		</div>
+		
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label text-right"> Password *</label>
+			<div class="col-sm-6">
+				<input formControlName="password"
+						type='text' name='password'
+						class='form-control' required />
+			</div>
+			<div *ngIf="update_user_form.get('password').touched && update_user_form.get('password').hasError('required')" class="col-sm-2">
 				<small class="text-danger">
 					Field is empty
 				</small>
@@ -62,7 +76,7 @@
 						type='text' name='email'
 						class='form-control' required />
 			</div>
-			<div *ngIf="create_user_form.get('email').touched && create_user_form.get('email').hasError('required')" class="col-sm-2">
+			<div *ngIf="update_user_form.get('email').touched && update_user_form.get('email').hasError('required')" class="col-sm-2">
 				<small class="text-danger">
 					Field is empty
 				</small>
@@ -76,21 +90,7 @@
 						type='text' name='photo'
 						class='form-control' required />
 			</div>
-			<div *ngIf="create_user_form.get('photo').touched && create_user_form.get('photo').hasError('required')" class="col-sm-2">
-				<small class="text-danger">
-					Field is empty
-				</small>
-			</div>
-		</div>
-		
-		<div class="form-group row">
-			<label class="col-sm-2 col-form-label text-right"> Password </label>
-			<div class="col-sm-6">
-				<input formControlName="password"
-						type='text' name='password'
-						class='form-control' required />
-			</div>
-			<div *ngIf="create_user_form.get('password').touched && create_user_form.get('password').hasError('required')" class="col-sm-2">
+			<div *ngIf="update_user_form.get('photo').touched && update_user_form.get('photo').hasError('required')" class="col-sm-2">
 				<small class="text-danger">
 					Field is empty
 				</small>
@@ -104,7 +104,7 @@
 						type='text' name='role'
 						class='form-control' required />
 			</div>
-			<div *ngIf="create_user_form.get('role').touched && create_user_form.get('role').hasError('required')" class="col-sm-2">
+			<div *ngIf="update_user_form.get('role').touched && update_user_form.get('role').hasError('required')" class="col-sm-2">
 				<small class="text-danger">
 					Field is empty
 				</small>
@@ -112,10 +112,11 @@
 		</div>
 
 	</form>
+	
 </div>
 
 <div class="buttons">
 	<button class="btn btn-primary" (click)="goBack()" id="goBack">Back</button>
 	<button class="btn btn-secondary" (click)="resetForm()" id="resetForm">Reset</button>
-	<button class="btn btn-success" (click)="save()" id="save">Create</button>
+	<button class="btn btn-success" (click)="save()" id="save">Save</button>
 </div>

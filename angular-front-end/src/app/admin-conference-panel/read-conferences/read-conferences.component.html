@@ -1,0 +1,47 @@
+
+<ul class="nav navbar-nav" routerLinkActive="active">
+	<li class="nav-item"><a class="nav-link" routerLink="categories">Categories</a></li>
+</ul>
+
+<!-- Заголовок страницы -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class='page-header'><h1>{{title}}</h1></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <button class='btn btn-primary pull-right' id="btn-openSettings" (click)="show = !show">Settings</button>
+		<a routerLink="/createconference" class="btn-create"> Create</a>
+    </div>
+	
+<div class="container">
+    <div class="row">
+        <table class='table table-hover table-responsive table-bordered'>
+            <tr>
+				<th class="text-center"> Title </th>
+				<th class="text-center"> Description </th>
+				<th class="text-center"> Category </th>
+				<th class="text-center"> Author </th>
+				<th class="text-center"> Creation date </th>
+				<th class="text-center"> Start date </th>
+				<th class="text-center"> Action </th>
+            </tr>
+
+            <tr *ngFor="let conference of conferences">
+				<td class="text-center"> {{conference.title}} </td>
+				<td class="text-center"> {{conference.description}} </td>
+				<!--<td class="text-center"> {{conference.category}} </td>-->
+				<td class="text-center"> {{conference.category.name}} </td>
+				<td class="text-center"> {{conference.author.username}} </td>
+				<td class="text-center"> {{conference.creationDate}} </td>
+				<td class="text-center"> {{conference.startDate}} </td>
+				
+                <td class="text-center">
+                    <a routerLink="/editconference/{{conference.id}}" class="btn-edit"> </a>
+					<button (click)="deleteConference(conference)"> Delete</button>
+                </td>  
+            </tr>
+        </table>
+    </div>
+</div>

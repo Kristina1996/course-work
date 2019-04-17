@@ -10,7 +10,7 @@ import { User } from '../../model/user';
 	selector: 'app-create-user',
 	templateUrl: './create-user.component.html',
 	styleUrls: ['./create-user.component.css'],
-	providers: [UserService]
+	providers: [ UserService ]
 })
 export class CreateUserComponent implements OnInit {
 
@@ -24,7 +24,7 @@ export class CreateUserComponent implements OnInit {
 		private formBuilder: FormBuilder
 	) { 
 		this.create_user_form = this.formBuilder.group({
-            name: ['', Validators.required],
+			name: ['', Validators.required],
             surname: ['', Validators.required],
 			username: ['', Validators.required],
             email: ['', Validators.required],
@@ -65,7 +65,7 @@ export class CreateUserComponent implements OnInit {
 	resetForm(): void {
         // Закладка данных в форму
         this.create_user_form.patchValue({
-            name: '',
+			name: '',
             surname: '',
             username: '',
             email: '',

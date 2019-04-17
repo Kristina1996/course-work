@@ -14,6 +14,12 @@ import { httpInterceptorProviders } from './auth/auth-interceptor';
 import { ReadUsersComponent } from './admin-user-panel/read-users/read-users.component';
 import { EditUserComponent } from './admin-user-panel/edit-user/edit-user.component';
 import { CreateUserComponent } from './admin-user-panel/create-user/create-user.component';
+import { ReadConferencesComponent } from './admin-conference-panel/read-conferences/read-conferences.component';
+import { CreateConferenceComponent } from './admin-conference-panel/create-conference/create-conference.component';
+import { EditConferenceComponent } from './admin-conference-panel/edit-conference/edit-conference.component';
+import { ReadCategoriesComponent } from './admin-conference-panel/read-categories/read-categories.component';
+import { CreateCategoryComponent } from './admin-conference-panel/create-category/create-category.component';
+import { EditCategoryComponent } from './admin-conference-panel/edit-category/edit-category.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +28,13 @@ import { CreateUserComponent } from './admin-user-panel/create-user/create-user.
     RegisterComponent,
     ReadUsersComponent,
     EditUserComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    ReadConferencesComponent,
+    CreateConferenceComponent,
+    EditConferenceComponent,
+    ReadCategoriesComponent,
+    CreateCategoryComponent,
+    EditCategoryComponent
   ],
   imports: [
     BrowserModule,

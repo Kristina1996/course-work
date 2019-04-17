@@ -1,0 +1,51 @@
+<p>
+  create-category works!
+</p>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class='page-header'><h1>{{title}}</h1></div>
+    </div>
+</div>
+
+
+<div class="form-create-category row">
+	
+	<form [formGroup]="create_category_form" (ngSubmit)="save()" id="form-group">
+
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label text-right"> Title *</label>
+			<div class="col-sm-6">
+				<input formControlName="name"
+						type='text' name='name'
+					    class='form-control' required />
+			</div>
+			<div *ngIf="create_category_form.get('name').touched && create_category_form.get('name').hasError('required')" class="col-sm-2" id="text-alert">
+				<small class="text-danger">
+					Field is empty
+				</small>
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label text-right"> Description *</label>
+			<div class="col-sm-6">
+				<input formControlName="description"
+						type='text' name='description'
+						class='form-control' required />
+			</div>
+			<div *ngIf="create_category_form.get('description').touched && create_category_form.get('description').hasError('required')" class="col-sm-2">
+				<small class="text-danger">
+					Field is empty
+				</small>
+			</div>
+		</div>
+
+	</form>
+</div>
+
+<div class="buttons">
+	<button class="btn btn-primary" (click)="goBack()" id="goBack">Back</button>
+	<button class="btn btn-secondary" (click)="resetForm()" id="resetForm">Reset</button>
+	<button class="btn btn-success" (click)="save()" id="save">Create</button>
+</div>

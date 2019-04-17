@@ -15,8 +15,12 @@
 				<a class="nav-link" routerLink="users">Admin Board</a>
 			</li>
 			
+			<li *ngIf="authority === 'admin'" class="nav-item">
+				<a class="nav-link" routerLink="conferences">Moderator Board</a>
+			</li>
+			
 			<li *ngIf="authority === 'moderator'" class="nav-item">
-				<a class="nav-link" routerLink="pm">Moderator Board</a>
+				<a class="nav-link" routerLink="conferences">Moderator Board</a>
 			</li>
 			
 			<li *ngIf="!authority" class="nav-item">
