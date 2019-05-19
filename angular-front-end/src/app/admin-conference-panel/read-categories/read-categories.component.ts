@@ -13,7 +13,7 @@ import { Category } from '../../model/category';
 export class ReadCategoriesComponent implements OnInit {
 	
 	show = false;
-    title = 'categories';
+    title = 'Categories';
     categories: Category[] = [];
     //columns = COLUMNS;
     page = 1;

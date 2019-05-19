@@ -29,7 +29,8 @@ export class UserService {
 			.get("http://localhost:8080/users")
             .pipe(map((res: Response) => res.json()));*/
 		
-		return this._http.get(this.userUrl, { responseType: 'json' });
+		return this._http.get<User[]>(this.userUrl);
+		//return this._http.get(this.userUrl, { responseType: 'json' });
     }
 	
 	/*
@@ -46,8 +47,7 @@ export class UserService {
 	*/
 	
 	registerUser(user: User): Observable<string> {
-		user.role = ['user'];
-		console.log(user.role);
+		user.role = [user.role];
 		return this._http.post<string>(this.registerUserURL, user, httpOptions);
 	}
 	
@@ -57,36 +57,21 @@ export class UserService {
 	}
 	
 	getUser(id): Observable<User> {
-		
-		return this._http.get(this.getUserURL+id, { responseType: 'json' });
+		return this._http.get<User>(this.getUserURL + id);
+	}
+	
+	getUserByUsername(username): Observable<User> {
+		return this._http.get<User>("http://localhost:8080/profile/" + username);
 	}
 	
 	updateUser(user) {
-		/*
-		let headers = new Headers({ 'Content-Type': 'application/json' });
-		let options = new RequestOptions({ headers: headers });
-		
-		return this._http.post(
-			"http://localhost:8084/rest-service/update",
-			user,
-			options
-		).pipe(map((res: Response) => res.json()));
-		*/
-		user.role = ['user'];
+		user.role = [user.role];
+		//user.role = ['user'];
 		return this._http.post<string>(this.updateUserURL, user, httpOptions);
 	}
 	
 	deleteUser(id) {
 		console.log(id);
-		/*
-		let headers = new Headers({ 'Content-Type': 'application/json' });
-		let options = new RequestOptions({ headers: headers });
-		
-		return this._http.delete(
-			"http://localhost:8084/rest-service/users/"+id,
-			options
-		);
-		*/
 		return this._http.delete("http://localhost:8080/users/"+id, httpOptions);
 	}
 }

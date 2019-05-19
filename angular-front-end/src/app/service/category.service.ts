@@ -23,7 +23,8 @@ export class CategoryService {
 	constructor(private _http: HttpClient) { }
 	
 	readCategories(): Observable<Category[]> {
-		return this._http.get(this.categoryURL, { responseType: 'json' });
+		return this._http.get<Category[]>(this.categoryURL);
+		//return this._http.get(this.categoryURL, { responseType: 'json' });
     }
 	
 	createCategory(category: Category): Observable<string> {
@@ -31,7 +32,8 @@ export class CategoryService {
 	}
 	
 	getCategory(id): Observable<Category> {
-		return this._http.get(this.paramCategoryURL + id, { responseType: 'json' });
+		return this._http.get<Category>(this.paramCategoryURL + id);
+		//return this._http.get(this.paramCategoryURL + id, { responseType: 'json' });
 	}
 	
 	updateCategory(category) {

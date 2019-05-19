@@ -6,3 +6,42 @@
     min-width: 22px;
     cursor: pointer;
 }
+
+.page-header {
+	margin-top: 5%;
+	margin-bottom: 3%;
+	display: inline-block;
+}
+
+.btn-create {
+	margin-top: 5%;
+	margin-bottom: 3%;
+	display: inline-block;
+	float: right;
+}
+
+.table-responsive {
+    display: table !important;
+}
+
+.ui-icons {
+	color: #212529;
+	cursor: pointer;
+}
+ 
+.ui-create-icon {
+	color: #007bff;
+	margin-right: 5px;
+}
+
+.card-deck {
+	align-items: center;
+	justify-content: center;
+}
+
+.card-deck .card {
+	flex: unset;
+	width: 300px;
+	margin-bottom: 2%;
+}
+ 

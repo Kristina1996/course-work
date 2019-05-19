@@ -17,6 +17,12 @@
 	height: 56px;
 }
 */
+
+
+.navbar {
+	min-height: calc(10vh);
+}
+
 .content {
 	color: darkslategrey;
 	flex-grow: 1;
@@ -25,8 +31,24 @@
 .footer {
 	margin-top: auto;
 	background: #e6e6e6;
-	height: 65px;
+	min-height: calc(10vh);
 	width: 100%;
 	position: relative;
 	bottom: 0;
+}
+
+.sidebar {
+	min-height: calc(80vh);
+}
+
+.sidebar-nav-link {
+	color: #bebebe !important;
+}
+
+.sidebar-nav-link:hover {
+	color: #fff !important;
+}
+
+.sidebar-icon {
+	padding-right: 5px;
 }

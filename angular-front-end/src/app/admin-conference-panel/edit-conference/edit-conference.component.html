@@ -14,13 +14,13 @@
 	<form [formGroup]="update_conference_form" (ngSubmit)="save()" id="form-group">
 
 		<div class="form-group row">
-			<label class="col-sm-2 col-form-label text-right"> Name *</label>
+			<label class="col-sm-2 col-form-label text-right"> Title *</label>
 			<div class="col-sm-6">
-				<input formControlName="name"
-						type='text' name='name'
+				<input formControlName="title"
+						type='text' name='title'
 					    class='form-control' required />
 			</div>
-			<div *ngIf="update_conference_form.get('name').touched && update_conference_form.get('name').hasError('required')" class="col-sm-2" id="text-alert">
+			<div *ngIf="update_conference_form.get('title').touched && update_conference_form.get('title').hasError('required')" class="col-sm-2" id="text-alert">
 				<small class="text-danger">
 					Field is empty
 				</small>
@@ -28,13 +28,13 @@
 		</div>
 
 		<div class="form-group row">
-			<label class="col-sm-2 col-form-label text-right"> Surname *</label>
+			<label class="col-sm-2 col-form-label text-right"> Description *</label>
 			<div class="col-sm-6">
-				<input formControlName="surname"
-						type='text' name='surname'
+				<input formControlName="description"
+						type='text' name='description'
 						class='form-control' required />
 			</div>
-			<div *ngIf="update_conference_form.get('surname').touched && update_conference_form.get('surname').hasError('required')" class="col-sm-2">
+			<div *ngIf="update_conference_form.get('description').touched && update_conference_form.get('description').hasError('required')" class="col-sm-2">
 				<small class="text-danger">
 					Field is empty
 				</small>
@@ -42,13 +42,13 @@
 		</div>
 
 		<div class="form-group row">
-			<label class="col-sm-2 col-form-label text-right"> Username *</label>
+			<label class="col-sm-2 col-form-label text-right"> Category *</label>
 			<div class="col-sm-6">
-				<input formControlName="username"
-						type='text' name='username'
+				<input formControlName="category"
+						type='text' name='category'
 						class='form-control' required />
 			</div>
-			<div *ngIf="update_user_form.get('username').touched && update_user_form.get('username').hasError('required')" class="col-sm-2">
+			<div *ngIf="update_conference_form.get('category').touched && update_conference_form.get('category').hasError('required')" class="col-sm-2">
 				<small class="text-danger">
 					Field is empty
 				</small>
@@ -56,13 +56,13 @@
 		</div>
 		
 		<div class="form-group row">
-			<label class="col-sm-2 col-form-label text-right"> Password *</label>
+			<label class="col-sm-2 col-form-label text-right"> Author *</label>
 			<div class="col-sm-6">
-				<input formControlName="password"
-						type='text' name='password'
+				<input formControlName="author"
+						type='text' name='author'
 						class='form-control' required />
 			</div>
-			<div *ngIf="update_user_form.get('password').touched && update_user_form.get('password').hasError('required')" class="col-sm-2">
+			<div *ngIf="update_conference_form.get('author').touched && update_conference_form.get('author').hasError('required')" class="col-sm-2">
 				<small class="text-danger">
 					Field is empty
 				</small>
@@ -70,13 +70,13 @@
 		</div>
 
 		<div class="form-group row">
-			<label class="col-sm-2 col-form-label text-right"> Email *</label>
+			<label class="col-sm-2 col-form-label text-right"> Creation date *</label>
 			<div class="col-sm-6">
-				<input formControlName="email"
-						type='text' name='email'
+				<input formControlName="creationDate"
+						type='text' name='creationDate'
 						class='form-control' required />
 			</div>
-			<div *ngIf="update_user_form.get('email').touched && update_user_form.get('email').hasError('required')" class="col-sm-2">
+			<div *ngIf="update_conference_form.get('creationDate').touched && update_conference_form.get('creationDate').hasError('required')" class="col-sm-2">
 				<small class="text-danger">
 					Field is empty
 				</small>
@@ -84,27 +84,13 @@
 		</div>
 
 		<div class="form-group row">
-			<label class="col-sm-2 col-form-label text-right"> Photo </label>
+			<label class="col-sm-2 col-form-label text-right"> Start date *</label>
 			<div class="col-sm-6">
-				<input formControlName="photo"
-						type='text' name='photo'
+				<input formControlName="startDate"
+						type='text' name='startDate'
 						class='form-control' required />
 			</div>
-			<div *ngIf="update_user_form.get('photo').touched && update_user_form.get('photo').hasError('required')" class="col-sm-2">
-				<small class="text-danger">
-					Field is empty
-				</small>
-			</div>
-		</div>
-		
-		<div class="form-group row">
-			<label class="col-sm-2 col-form-label text-right"> Role </label>
-			<div class="col-sm-6">
-				<input formControlName="role"
-						type='text' name='role'
-						class='form-control' required />
-			</div>
-			<div *ngIf="update_user_form.get('role').touched && update_user_form.get('role').hasError('required')" class="col-sm-2">
+			<div *ngIf="update_conference_form.get('startDate').touched && update_conference_form.get('startDate').hasError('required')" class="col-sm-2">
 				<small class="text-danger">
 					Field is empty
 				</small>

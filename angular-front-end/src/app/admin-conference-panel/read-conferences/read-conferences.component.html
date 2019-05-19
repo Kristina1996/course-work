@@ -7,17 +7,32 @@
     <div class="row">
         <div class="col-md-12">
             <div class='page-header'><h1>{{title}}</h1></div>
+			<a routerLink="/createconference" class="btn-create">
+				<i class="fas fa-plus-circle ui-create-icon"></i>Create new conference
+			</a>
         </div>
-    </div>
-
-    <div class="row">
-        <button class='btn btn-primary pull-right' id="btn-openSettings" (click)="show = !show">Settings</button>
-		<a routerLink="/createconference" class="btn-create"> Create</a>
     </div>
 	
 <div class="container">
     <div class="row">
-        <table class='table table-hover table-responsive table-bordered'>
+		
+		<div class="card-deck">
+			<div *ngFor="let conference of conferences" class="card">
+				<img src="{{conference.icon}}" class="card-img-top" >
+				<div class="card-img-overlay">
+					<h5 class="card-title">{{conference.category.name}}</h5>
+					<p class="card-text">{{conference.price}} $</p>
+				</div>
+				<div class="card-body">
+					<h5 class="card-title">{{conference.title}}</h5>
+					<p class="card-text">{{conference.description}}</p>
+					<p class="card-text"><small class="text-muted">Creation date: {{conference.creationDate}} </small></p>
+					<p class="card-text"><small class="text-muted">Start date: {{conference.startDate}}</small></p>
+				</div>
+			</div>
+		</div>
+		
+        <!--<table class='table table-hover table-responsive table-bordered'>
             <tr>
 				<th class="text-center"> Title </th>
 				<th class="text-center"> Description </th>
@@ -25,23 +40,31 @@
 				<th class="text-center"> Author </th>
 				<th class="text-center"> Creation date </th>
 				<th class="text-center"> Start date </th>
+				<th class="text-center"> Status </th>
+				<th class="text-center"> Icon </th>
+				<th class="text-center"> Price </th>
 				<th class="text-center"> Action </th>
             </tr>
 
             <tr *ngFor="let conference of conferences">
 				<td class="text-center"> {{conference.title}} </td>
 				<td class="text-center"> {{conference.description}} </td>
-				<!--<td class="text-center"> {{conference.category}} </td>-->
 				<td class="text-center"> {{conference.category.name}} </td>
 				<td class="text-center"> {{conference.author.username}} </td>
 				<td class="text-center"> {{conference.creationDate}} </td>
 				<td class="text-center"> {{conference.startDate}} </td>
+				<td class="text-center"> {{conference.status}} </td>
+				<td class="text-center"> 
+					 <img src="{{conference.icon}}"/>
+				</td>
+				<td class="text-center"> {{conference.price}} </td>
 				
                 <td class="text-center">
+					<a routerLink="/conference/{{conference.id}}" class="btn-view"> View </a>
                     <a routerLink="/editconference/{{conference.id}}" class="btn-edit"> </a>
-					<button (click)="deleteConference(conference)"> Delete</button>
+					<button (click)="deleteConference(conference)"> Delete </button>
                 </td>  
             </tr>
-        </table>
+        </table>-->
     </div>
 </div>

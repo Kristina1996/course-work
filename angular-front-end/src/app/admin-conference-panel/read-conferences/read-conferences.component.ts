@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import {Http, Response, Headers} from '@angular/http';
 
@@ -16,13 +17,14 @@ export class ReadConferencesComponent implements OnInit {
 	show = false;
     title = 'Conferences';
     conferences: Conference[] = [];
-    //columns = COLUMNS;
+	//columns = COLUMNS;
     page = 1;
 
     /**
      * Инициализация conferenceService для получения списка конференций
      */
-    constructor( private conferenceService: ConferenceService ) {
+    constructor( private conferenceService: ConferenceService,
+				 private _sanitizer: DomSanitizer	) {
     }
 
     ngOnInit() {

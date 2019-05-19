@@ -1,40 +1,106 @@
-<nav class="navbar navbar-inverse">
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="#">Virtual Conference</a>
 		</div>
 	
 		<ul class="nav navbar-nav" routerLinkActive="active">
-			<li class="nav-item"><a class="nav-link" routerLink="users">Home</a></li>
+		
+			<ng-container *ngIf="authority === 'user'">
+				<li class="nav-item"><a class="nav-link" routerLink="profile">My Profile</a></li>
+				<li class="nav-item"><a class="nav-link" routerLink="listconferences">User Board</a></li>
+			</ng-container>
 			
-			<li *ngIf="authority === 'user'" class="nav-item">
-				<a class="nav-link" routerLink="users">User Board</a>
-			</li>
+			<ng-container *ngIf="authority === 'admin'">
+				<li class="nav-item"><a class="nav-link" routerLink="profile">My Profile</a></li>
+				<li class="nav-item"><a class="nav-link" routerLink="users">Admin Board</a></li>
+				<li class="nav-item"><a class="nav-link" routerLink="conferences">Moderator Board</a></li>
+				<li class="nav-item"><a class="nav-link" routerLink="listconferences">User Board</a></li>
+			</ng-container>
 			
-			<li *ngIf="authority === 'admin'" class="nav-item">
-				<a class="nav-link" routerLink="users">Admin Board</a>
-			</li>
-			
-			<li *ngIf="authority === 'admin'" class="nav-item">
-				<a class="nav-link" routerLink="conferences">Moderator Board</a>
-			</li>
-			
-			<li *ngIf="authority === 'moderator'" class="nav-item">
-				<a class="nav-link" routerLink="conferences">Moderator Board</a>
-			</li>
+			<ng-container *ngIf="authority === 'moderator'">
+				<li class="nav-item"><a class="nav-link" routerLink="profile">My Profile</a></li>
+				<li class="nav-item"><a class="nav-link" routerLink="conferences">Moderator Board</a></li>
+				<li class="nav-item"><a class="nav-link" routerLink="listconferences">User Board</a></li>
+			</ng-container>
 			
 			<li *ngIf="!authority" class="nav-item">
 				<a class="nav-link" routerLink="login">Login</a>
 			</li>
 			
 			<li *ngIf="authority" class="nav-item">
-				<a class="nav-link" routerLink="login" (click)="logout()">Logout</a>
+				<a class="nav-link" routerLink="login" (click)="logout()">
+				<i class="fas fa-sign-out-alt sidebar-icon"></i>Logout</a>
 			</li>
 		</ul>
 	</div>
 </nav>
 
-<div class="container">
-	<router-outlet></router-outlet>
+<div class="container-fluid">
+	<div class="row">
+	
+	<!-- Dashboard -->
+	<ng-container *ngIf="authority">
+		<nav class="col-md-2 d-none d-md-block bg-dark sidebar">
+			<div class="sidebar-sticky">
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a class="nav-link sidebar-nav-link active" routerLink="listconferences">
+							<i class="fas fa-user-friends sidebar-icon"></i>
+							Conferences <span class="sr-only">(current)</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link sidebar-nav-link" routerLink="#">
+							<i class="fas fa-search sidebar-icon"></i>
+							Search
+						</a>
+					</li>
+			  
+					<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+						<span>-------------</span>
+					</h6>
+			  
+					<li class="nav-item">
+						<a class="nav-link sidebar-nav-link" routerLink="myconferences">
+							<i class="far fa-user sidebar-icon"></i>
+							My Conferences
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link sidebar-nav-link" routerLink="favourites">
+							<i class="far fa-heart sidebar-icon"></i>
+							Favourites
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link sidebar-nav-link" routerLink="#">
+							<i class="fas fa-chevron-right sidebar-icon"></i>
+							Recently Visited
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link sidebar-nav-link" routerLink="yandexpayment">
+							<i class="fas fa-dollar-sign sidebar-icon"></i>
+							Purchased
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link sidebar-nav-link" routerLink="stats">
+							<i class="far fa-chart-bar sidebar-icon"></i>
+							Stats
+						</a>
+					</li>  
+				</ul>
+			</div>
+		</nav>
+	</ng-container>
+		
+		<!-- Content -->
+		<div class="container">
+			<router-outlet></router-outlet>
+		</div>
+		
+	</div>
 </div>
-

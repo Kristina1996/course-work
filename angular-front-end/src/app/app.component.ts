@@ -12,7 +12,7 @@ export class AppComponent {
   
 	private authority: string;
 
-	constructor(private tokenStorage: TokenStorageService) { }
+	constructor( private tokenStorage: TokenStorageService ) { }
 
 	ngOnInit() {
 		if (this.tokenStorage.getToken()) {

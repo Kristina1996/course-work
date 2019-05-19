@@ -10,7 +10,7 @@
 
 <div class="form-create-conference row">
 	
-	<form [formGroup]="create_conference_form" (ngSubmit)="save()" id="form-group">
+	<form [formGroup]="create_conference_form" (ngSubmit)="save(category)" id="form-group">
 
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label text-right"> Title *</label>
@@ -43,21 +43,17 @@
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label text-right"> Category *</label>
 			<div class="col-sm-6">
-				<input formControlName="category"
-						type='text' name='category'
-						class='form-control' required />
-				
-				<div class="dropdown show">
-					<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Select category
-					</a>
-
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+	
+				<div class="form-group">
+				  <select class="custom-select" id="inputGroupSelect04" 
+						  formControlName="category" type='text' 
+						  name='category' required>
+					<option selected>Choose...</option>
 						<ng-container *ngFor="let category of categories">
-						<a class="dropdown-item" href="#"> {{category.name}} </a>
+							<option [ngValue]="category">{{category.name}}</option>
 						</ng-container>
-					</div>
-				</div>				
+				  </select>
+				</div>
 				
 			</div>
 			<div *ngIf="create_conference_form.get('category').touched && create_conference_form.get('category').hasError('required')" class="col-sm-2">
@@ -80,20 +76,37 @@
 				</small>
 			</div>
 		</div>
-
-	<!--<div class="form-group row">
-			<label class="col-sm-2 col-form-label text-right"> Photo </label>
+		
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label text-right"> Icon *</label>
 			<div class="col-sm-6">
-				<input formControlName="photo"
-						type='text' name='photo'
+				<input formControlName="icon"
+						type='text' name='icon'
 						class='form-control' required />
 			</div>
-			<div *ngIf="create_conference_form.get('photo').touched && create_conference_form.get('photo').hasError('required')" class="col-sm-2">
+			<div *ngIf="create_conference_form.get('icon').touched && create_conference_form.get('icon').hasError('required')" class="col-sm-2">
 				<small class="text-danger">
 					Field is empty
 				</small>
 			</div>
-		</div>-->
+			
+			<label for="exampleFormControlFile1">Upload icon for conference</label>
+			<input type="file" class="form-control-file" id="exampleFormControlFile1" (change)="onFileChange($event)" #fileInput>
+		</div>
+
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label text-right"> Price </label>
+			<div class="col-sm-6">
+				<input formControlName="price"
+						type='text' name='price'
+						class='form-control' required />
+			</div>
+			<div *ngIf="create_conference_form.get('price').touched && create_conference_form.get('price').hasError('required')" class="col-sm-2">
+				<small class="text-danger">
+					Field is empty
+				</small>
+			</div>
+		</div>
 
 	</form>
 </div>
@@ -101,5 +114,5 @@
 <div class="buttons">
 	<button class="btn btn-primary" (click)="goBack()" id="goBack">Back</button>
 	<button class="btn btn-secondary" (click)="resetForm()" id="resetForm">Reset</button>
-	<button class="btn btn-success" (click)="save()" id="save">Create</button>
+	<button class="btn btn-success" (click)="save(category)" id="save">Create</button>
 </div>

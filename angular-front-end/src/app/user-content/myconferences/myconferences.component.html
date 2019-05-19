@@ -1,0 +1,27 @@
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class='page-header'><h1>{{title}}</h1></div>
+			<a routerLink="/createconference" class="btn-create">
+				<i class="fas fa-plus-circle ui-create-icon"></i>Create new conference</a>
+		</div>
+	</div>
+
+	<ng-container *ngFor="let conference of conferences">
+		<div class="conf">
+			<div class="conf-card-img" [ngStyle]="{'background-image': 'url(' + conference.icon + ')'}"></div>
+			<div class="card conf-card mb-3">
+				<div class="conf-card-header card-header">{{conference.category.name}}</div>
+				<div class="card-body">
+					<h5 class="card-title">{{conference.title}} by {{conference.author.username}}</h5>
+					<h4 class="card-text">{{conference.price}} $</h4>
+					<p class="card-text">{{conference.description}}</p>
+					<p class="card-text">
+						<small class="text-muted">Created: {{conference.creationDate}}</small>
+						<small class="text-muted">Start: {{conference.startDate}}</small>
+					</p>
+				</div>
+			</div>
+		</div>	
+	</ng-container>
+

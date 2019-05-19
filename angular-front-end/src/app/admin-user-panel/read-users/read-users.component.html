@@ -1,17 +1,11 @@
-<p>
-  read-users works!
-</p>
-
 <!-- Заголовок страницы -->
     <div class="row">
         <div class="col-md-12">
             <div class='page-header'><h1>{{title}}</h1></div>
+			<a routerLink="/createuser" class="btn-create">
+				<i class="fas fa-user-plus ui-create-icon"></i>Create new user
+			</a>
         </div>
-    </div>
-
-    <div class="row">
-        <button class='btn btn-primary pull-right' id="btn-openSettings" (click)="show = !show">Настройки</button>
-		<a routerLink="/createuser" class="btn-create"> Создать</a>
     </div>
 	
 <div class="container">
@@ -23,7 +17,6 @@
 				<th class="text-center"> Username </th>
 				<th class="text-center"> Email </th>
 				<th class="text-center"> Role </th>
-				<th class="text-center"> Photo </th>
 				<th class="text-center"> Action </th>
             </tr>
 
@@ -32,14 +25,10 @@
 				<td class="text-center"> {{user.surname}} </td>
 				<td class="text-center"> {{user.username}} </td>
 				<td class="text-center"> {{user.email}} </td>
-				<ng-container *ngFor="let role of roles">
-					<td class="text-center"> {{role.name}} </td> 
-				</ng-container>
-				<td class="text-center"> {{user.photo}} </td>
-				
-                <td class="text-center">
-                    <a routerLink="/edituser/{{user.id}}" class="btn-edit"> </a>
-					<button (click)="deleteUser(user)"> Delete</button>
+				<td class="text-center"> {{user.roles[0].name}} </td>
+				<td class="text-center">
+					<a routerLink="/edituser/{{user.id}}" style="margin-right: 5px;"><i class="far fa-edit ui-icons"></i></a>
+					<a (click)="deleteUser(user)"><i class="far fa-trash-alt ui-icons"></i></a>
                 </td>
                   
             </tr>

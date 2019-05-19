@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class='page-header'><h1>{{title}}</h1></div>
+    </div>
+</div>
+
+<ng-container *ngFor="let conference of conferences">
+	<div class="conf">
+		<div class="conf-card-img" [ngStyle]="{'background-image': 'url(' + conference.icon + ')'}"></div>
+		<div class="card conf-card mb-3">
+			<div class="conf-card-header card-header">{{conference.category.name}}</div>
+			<div class="card-body">
+				<h5 class="card-title">{{conference.title}} by {{conference.author.username}}</h5>
+				
+				<div *ngIf="conference.price == null; then block else elseBlock"></div>
+				
+				<ng-template #block><h4 class="card-text">Free</h4></ng-template>
+				<ng-template #elseBlock><h4 class="card-text">{{conference.price}} $</h4></ng-template>
+				
+				<p class="card-text">{{conference.description}}</p>
+				<p class="card-text">
+					<small class="text-muted">Created: {{conference.creationDate}}</small>
+				</p>
+				<p class="card-text">
+					<small class="text-muted">Start: {{conference.startDate}}</small>
+				</p>
+			</div>
+		</div>
+	</div>	
+</ng-container>
+
+<ng-container *ngIf="conferences.length == 0">
+	<div>
+		Add a conferences to favorites.
+	</div>	
+</ng-container>

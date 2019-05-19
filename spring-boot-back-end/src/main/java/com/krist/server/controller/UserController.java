@@ -55,6 +55,13 @@ public class UserController {
     public User getUser(@PathVariable("id") Long id) {
         return service.getUserByID(id);
     }
+	
+	@PreAuthorize("hasRole('ADMIN')")
+	@RequestMapping(value = "/profile/{username}", method = RequestMethod.GET)
+    @ResponseBody
+    public User getUserByUsername(@PathVariable("username") String username) {
+        return service.getUserByUsername(username);
+    }
 
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/users", method = RequestMethod.POST)

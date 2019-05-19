@@ -20,6 +20,15 @@ import { EditConferenceComponent } from './admin-conference-panel/edit-conferenc
 import { ReadCategoriesComponent } from './admin-conference-panel/read-categories/read-categories.component';
 import { CreateCategoryComponent } from './admin-conference-panel/create-category/create-category.component';
 import { EditCategoryComponent } from './admin-conference-panel/edit-category/edit-category.component';
+import { ConferencesListComponent } from './user-content/conferences-list/conferences-list.component';
+import { ViewConferenceComponent } from './admin-conference-panel/view-conference/view-conference.component';
+import { UserInfoComponent } from './user-profile/user-info/user-info.component';
+import { MyConferencesComponent } from './user-content/myconferences/myconferences.component';
+import { FavouritesConferencesComponent } from './user-content/favourites-conferences/favourites-conferences.component';
+import { StatsComponent } from './user-content/stats/stats.component';
+import { YandexPaymentComponent } from './user-content/yandex-payment/yandex-payment.component';
+import { PaymentComponent } from './user-content/payment/payment.component';
+import { ViewConfComponent } from './user-content/view-conf/view-conf.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +43,16 @@ import { EditCategoryComponent } from './admin-conference-panel/edit-category/ed
     EditConferenceComponent,
     ReadCategoriesComponent,
     CreateCategoryComponent,
-    EditCategoryComponent
+    EditCategoryComponent,
+    ConferencesListComponent,
+    ViewConferenceComponent,
+    UserInfoComponent,
+    MyConferencesComponent,
+    FavouritesConferencesComponent,
+    StatsComponent,
+    YandexPaymentComponent,
+    PaymentComponent,
+    ViewConfComponent
   ],
   imports: [
     BrowserModule,

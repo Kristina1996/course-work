@@ -41,7 +41,7 @@ export class CreateUserComponent implements OnInit {
 	 * Сохранить введенные значения о пользователе через userService
      */
 	save() {
-		
+		console.log(this.create_user_form.value);
         //this.userService.createUser(this.create_user_form.value)
 		this.userService.registerUser(this.create_user_form.value)
             .subscribe(

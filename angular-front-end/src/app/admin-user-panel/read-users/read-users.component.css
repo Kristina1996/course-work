@@ -1,8 +1,39 @@
-.btn-edit {
-    background-image: url("edit1.png");
-    display: inline-block;
-    background-size: contain;
-    min-height: 22px;
-    min-width: 22px;
-    cursor: pointer;
+body {
+	font-family: 'lato', sans-serif;
+}
+
+.page-header {
+	margin-top: 5%;
+	margin-bottom: 3%;
+	display: inline-block;
+}
+
+.btn-create {
+	margin-top: 5%;
+	margin-bottom: 3%;
+	display: inline-block;
+	float: right;
+}
+
+.table-responsive {
+    display: table !important;
+}
+
+.ui-icons {
+	color: #212529;
+	cursor: pointer;
+ }
+ 
+.ui-create-icon {
+	color: #007bff;
+	margin-right: 5px;
+ }
+ 
+.table-bordered {
+    border: 0 none transparent !important;
+}
+ 
+.table td, .table th {
+    border-left: 0 none transparent !important;
+	border-right: 0 none transparent !important;
 }

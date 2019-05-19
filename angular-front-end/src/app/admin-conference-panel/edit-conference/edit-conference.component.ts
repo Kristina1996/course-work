@@ -46,8 +46,7 @@ export class EditConferenceComponent implements OnInit {
 			category: ['', Validators.required],
             author: ['', Validators.required],
             creationDate: ['', Validators.required],
-			startDate: ['', Validators.required],
-			password: ['', Validators.required]
+			startDate: ['', Validators.required]
         });
 	}
 
@@ -77,19 +76,19 @@ export class EditConferenceComponent implements OnInit {
      */
 	resetForm(): void {
 		const id = +this.route.snapshot.paramMap.get('id');
-
+		
         this.conferenceService.getConference(id)
             .subscribe(conference => {
-                // Закладка данных в форму
                 this.update_conference_form.patchValue({
-                    name: conference.name,
-                    surname: conference.surname,
-                    username: conference.username,
-					password: conference.password,
-					email: conference.email,
-					photo: conference.photo,
-					role: user.role
+                    title: conference.title,
+                    description: conference.description,
+                    category: conference.category['name'],
+					author: conference.author['username'],
+					//creationDate: conference.creationDate.toString(),
+					creationDate: conference.creationDate,
+					startDate: conference.startDate
                 });
+				console.log(conference);
             });
 	}
 
@@ -99,17 +98,11 @@ export class EditConferenceComponent implements OnInit {
 	save() {
 		const id = +this.route.snapshot.paramMap.get('id');
 		
-		this.conferenceService.getConference(id)
-            .subscribe(conference => {
-                this.update_conference_form.patchValue({
-                    password: conference.password
-                });
-            });
-		
 		console.log(this.update_conference_form.value);
 		
 		this.update_conference_form.value.id = id;
-        this.conferenceService.updateConference(this.update_conference_form.value)
+		console.log(this.conference.author);
+        this.conferenceService.updateConference(this.update_conference_form.value, this.conference.category, this.conference.author)
             .subscribe(
                  conference => {
                     this.goBack();
