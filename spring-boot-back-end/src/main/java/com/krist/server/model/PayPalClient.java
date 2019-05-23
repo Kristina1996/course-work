@@ -11,8 +11,8 @@ import java.util.Iterator;
 public class PayPalClient {
 	
 	private PayPalEnvironment environment = new PayPalEnvironment.Sandbox(
-		    "YOUR APPLICATION CLIENT ID",
-		    "YOUR APPLICATION CLIENT SECRET");
+		    "AaycrdvyH1PiufqCBGViYTAaOwSNlPHloamLWsmGCwxNHDvnMdt4eLXfC9bNzag8dZrUt1_YbHhSonuR",
+		    "EDQqaMOw8CggYUC1h2UOI7XLixIi-FqsNV58L2OfBkoF53z3UDxD0zBzI-t_1IvuhRNtkVLZFkEkYSbJ");
 
 	PayPalHttpClient client = new PayPalHttpClient(environment);
 

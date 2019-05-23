@@ -16,6 +16,7 @@ public class GetOrder extends PayPalClient {
 	    OrdersGetRequest request = new OrdersGetRequest(orderId);
 	    //3. Call PayPal to get the transaction
 	    HttpResponse<Order> response = client().execute(request);
+	    
 	    //4. Save the transaction in your database. Implement logic to save transaction to your database for future reference.
 	    System.out.println("Full response body:");
 	    System.out.println(new JSONObject(new Json().serialize(response.result())).toString(4));

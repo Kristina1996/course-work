@@ -35,7 +35,6 @@
 }
 
 .card-deck {
-	align-items: center;
 	justify-content: center;
 }
 
@@ -43,5 +42,10 @@
 	flex: unset;
 	width: 300px;
 	margin-bottom: 2%;
+}
+
+.card-footer {
+    background-color: rgb(255, 255, 255);
+    border-top: none;
 }
  

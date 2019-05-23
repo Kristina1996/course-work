@@ -49,12 +49,11 @@ export class ReadConferencesComponent implements OnInit {
 		this.conferenceService.deleteConference(conference.id).subscribe();
 	}
 	
-	publishConference() {
-		
-	}
-	
-	blockConference() {
-		
+	getConferencesByStatus(status) {
+		this.conferenceService.getConferencesByStatus(status)
+            .subscribe(conferences => {
+				this.conferences = conferences;
+            });
 	}
 
 }

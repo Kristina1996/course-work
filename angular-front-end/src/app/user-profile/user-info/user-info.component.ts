@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import * as CryptoJS from 'crypto-js';
 
 import { TokenStorageService } from '../../auth/token-storage.service';
-
 import { UserService } from '../../service/user.service';
 import { User } from '../../model/user';
 
@@ -14,7 +14,7 @@ import { User } from '../../model/user';
 export class UserInfoComponent implements OnInit {
 	
 	user: User;
-	title = 'User Profile';
+	title = 'User Profile'; 
 
 	constructor( private userService: UserService, 
 				 private tokenStorage: TokenStorageService ) { }

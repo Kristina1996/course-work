@@ -1,6 +1,6 @@
 package com.krist.server.model;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,9 +9,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "visit")
@@ -21,9 +25,10 @@ public class Visit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
-	@NotBlank
-	@DateTimeFormat(pattern = "yyyy-MM-dd hh-mm")
-	private LocalDate visitDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm", timezone="GMT")
+	private Date visitDate;
 	
 	@ManyToOne
 	@JoinColumn(name = "idUser")
@@ -42,11 +47,11 @@ public class Visit {
 		this.id = id;
 	}
 
-	public LocalDate getVisitDate() {
+	public Date getVisitDate() {
 		return visitDate;
 	}
 
-	public void setVisitDate(LocalDate visitDate) {
+	public void setVisitDate(Date visitDate) {
 		this.visitDate = visitDate;
 	}
 

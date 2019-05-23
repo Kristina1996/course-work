@@ -1,3 +1,9 @@
+<div class="row">
+	<button type="button" class="btn btn-secondary btn-lg" (click)="getAllConferences()">All</button>
+	<button type="button" class="btn btn-secondary btn-lg" (click)="getConferencesByStatus(0)">Not consedered</button>
+	<button type="button" class="btn btn-secondary btn-lg" (click)="getConferencesByStatus(1)">Publeshed</button>
+	<button type="button" class="btn btn-secondary btn-lg" (click)="getConferencesByStatus(2)">Blocked</button>
+</div>
 
 <ul class="nav navbar-nav" routerLinkActive="active">
 	<li class="nav-item"><a class="nav-link" routerLink="categories">Categories</a></li>
@@ -28,6 +34,10 @@
 					<p class="card-text">{{conference.description}}</p>
 					<p class="card-text"><small class="text-muted">Creation date: {{conference.creationDate}} </small></p>
 					<p class="card-text"><small class="text-muted">Start date: {{conference.startDate}}</small></p>
+					<a routerLink="/conference/{{conference.id}}" style="margin-right: 5px;"><i class="far fa-edit ui-icons"></i></a>
+				</div>
+				<div class="card-footer">
+					<a routerLink="/conference/{{conference.id}}" style="margin-right: 5px;"><i class="far fa-edit ui-icons"></i></a>
 				</div>
 			</div>
 		</div>

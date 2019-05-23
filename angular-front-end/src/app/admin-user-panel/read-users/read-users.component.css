@@ -37,3 +37,10 @@ body {
     border-left: 0 none transparent !important;
 	border-right: 0 none transparent !important;
 }
+
+.img-round {
+    border-radius: 50%; /* Радиус скругления */
+    box-shadow: 0 0 1px #666; /* Параметры тени */
+	height: 70px;
+	width: 70px;
+}

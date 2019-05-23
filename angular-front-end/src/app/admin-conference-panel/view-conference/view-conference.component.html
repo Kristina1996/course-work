@@ -1,3 +1,32 @@
-<p>
-  view-conference works!
-</p>
+<div class="row">
+    <div class="col-md-12">
+        <div class='page-header'><h1>{{title}}{{conference.title}}</h1></div>
+    </div>
+</div>
+
+<ul class="list-group list-group-flush">
+	<li class="list-group-item">Title: {{ conference.title }}</li>
+	<li class="list-group-item">Description: {{ conference.description }}</li>
+	<li class="list-group-item">Category: {{ conference.category.name }}</li>
+	<li class="list-group-item">Author: {{ conference.author.username }}</li>
+	<li class="list-group-item">Price: {{ conference.price }} $</li>
+	<li class="list-group-item">Start date: {{ conference.startDate }}</li>
+</ul>
+
+<div class="form-group row">
+	<label class="col-sm-2 col-form-label text-right">Status: </label>
+	<div class="col-sm-6">			
+		<div class="form-group">
+			<select class="custom-select" id="inputGroupSelect04" 
+					type='text' [(ngModel)]="status"
+					name='status' required>
+				<option>Not considered</option>
+				<option>Publish</option>
+				<option>Block</option>
+			</select>
+		</div>		
+	</div>
+</div>
+<ng-container *ngIf="status !== undefind">
+	<button type="button" class="btn btn-secondary btn-lg btn-block" (click)="save()">{{status}} this conference</button>
+<ng-container>

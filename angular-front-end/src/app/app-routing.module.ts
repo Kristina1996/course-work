@@ -26,8 +26,11 @@ import { ViewConfComponent } from './user-content/view-conf/view-conf.component'
 import { MyConferencesComponent } from './user-content/myconferences/myconferences.component';
 import { FavouritesConferencesComponent } from './user-content/favourites-conferences/favourites-conferences.component';
 import { StatsComponent } from './user-content/stats/stats.component';
+
 import { YandexPaymentComponent } from './user-content/yandex-payment/yandex-payment.component';
 import { PaymentComponent } from './user-content/payment/payment.component';
+
+import { VisitedConferencesComponent } from './user-content/visited-conferences/visited-conferences.component';
 
 const routes: Routes = [
 	{ path: 'login', component: LoginComponent },
@@ -54,8 +57,11 @@ const routes: Routes = [
 	{ path: 'myconferences', component: MyConferencesComponent },
 	{ path: 'favourites', component: FavouritesConferencesComponent },
 	{ path: 'stats', component: StatsComponent },
+	
 	{ path: 'yandexpayment', component: YandexPaymentComponent },
 	{ path: 'payment/:id', component: PaymentComponent },
+	
+	{ path: 'visited', component: VisitedConferencesComponent },
 	
 	{ path: '', redirectTo: '/login', pathMatch: 'full' },
 ];

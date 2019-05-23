@@ -8,6 +8,10 @@ import com.krist.server.model.User;
 public interface ConferenceService {
 	
 	List<Conference> getAllConferences();
+	
+	List<Conference> getConferencesByStatus(Integer status);
+	
+	List<Conference> getVisitedConferences(Integer id);
     
 	Conference getConferenceByID(Long id);
     

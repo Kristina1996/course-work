@@ -50,20 +50,6 @@
 				</small>
 			</div>
 		</div>
-		
-		<div class="form-group row">
-			<label class="col-sm-2 col-form-label text-right"> Password *</label>
-			<div class="col-sm-6">
-				<input formControlName="password"
-						type='text' name='password'
-						class='form-control' required />
-			</div>
-			<div *ngIf="update_user_form.get('password').touched && update_user_form.get('password').hasError('required')" class="col-sm-2">
-				<small class="text-danger">
-					Field is empty
-				</small>
-			</div>
-		</div>
 
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label text-right"> Email *</label>
@@ -79,6 +65,7 @@
 			</div>
 		</div>
 
+		<!--
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label text-right"> Photo </label>
 			<div class="col-sm-6">
@@ -92,13 +79,46 @@
 				</small>
 			</div>
 		</div>
+		-->
 		
+		<div class="form-group row image-upload">
+			<label class="col-sm-2 col-form-label text-right" for="exampleFormControlFile1">Upload photo</label>
+			<div class="col-sm-6">
+				<input type="file" class="form-control-file" id="exampleFormControlFile1" 
+					   formControlName="photo" name='photo' 
+					   required (change)="onFileChange($event)" #fileInput>
+			</div>
+		</div>
+		
+		<!--
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label text-right"> Role </label>
 			<div class="col-sm-6">
 				<input formControlName="role"
 						type='text' name='role'
 						class='form-control' required />
+			</div>
+			<div *ngIf="update_user_form.get('role').touched && update_user_form.get('role').hasError('required')" class="col-sm-2">
+				<small class="text-danger">
+					Field is empty
+				</small>
+			</div>
+		</div>
+		-->
+		
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label text-right"> Role </label>
+			<div class="col-sm-6">	
+				<div class="form-group">
+					<select class="custom-select" id="inputGroupSelect04" 
+							formControlName="role" type='text' 
+							name='role' required>
+						<option>user</option>
+						<option>moderator</option>
+						<option>admin</option>
+					</select>
+				</div>
+				
 			</div>
 			<div *ngIf="update_user_form.get('role').touched && update_user_form.get('role').hasError('required')" class="col-sm-2">
 				<small class="text-danger">
@@ -114,5 +134,5 @@
 <div class="buttons text-center">
 	<button class="btn btn-primary" (click)="goBack()" id="goBack">Back</button>
 	<button class="btn btn-secondary" (click)="resetForm()" id="resetForm">Reset</button>
-	<button class="btn btn-success" (click)="save()" id="save">Save</button>
+	<button class="btn btn-success" (click)="save()" [disabled]="!buttonSaveDisabled" id="save">Save</button>
 </div>

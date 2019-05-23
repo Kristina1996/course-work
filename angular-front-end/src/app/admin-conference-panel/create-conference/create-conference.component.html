@@ -1,7 +1,3 @@
-<p>
-  create-conference works!
-</p>
-
 <div class="row">
         <div class="col-md-12">
             <div class='page-header'><h1>{{title}}</h1></div>
@@ -66,9 +62,15 @@
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label text-right"> Start date *</label>
 			<div class="col-sm-6">
+				<!--
 				<input formControlName="startDate"
 						type='text' name='startDate'
+						class='form-control' required /> -->
+						
+				<input formControlName="startDate"
+						type='datetime-local' name='startDate'
 						class='form-control' required />
+				
 			</div>
 			<div *ngIf="create_conference_form.get('startDate').touched && create_conference_form.get('startDate').hasError('required')" class="col-sm-2">
 				<small class="text-danger">
@@ -77,21 +79,13 @@
 			</div>
 		</div>
 		
-		<div class="form-group row">
-			<label class="col-sm-2 col-form-label text-right"> Icon *</label>
+		<div class="form-group row image-upload">
+			<label class="col-sm-2 col-form-label text-right" for="exampleFormControlFile1">Upload image</label>
 			<div class="col-sm-6">
-				<input formControlName="icon"
-						type='text' name='icon'
-						class='form-control' required />
+				<input type="file" class="form-control-file" id="exampleFormControlFile1" 
+					   formControlName="icon" name='icon' 
+					   required (change)="onFileChange($event)" #fileInput>
 			</div>
-			<div *ngIf="create_conference_form.get('icon').touched && create_conference_form.get('icon').hasError('required')" class="col-sm-2">
-				<small class="text-danger">
-					Field is empty
-				</small>
-			</div>
-			
-			<label for="exampleFormControlFile1">Upload icon for conference</label>
-			<input type="file" class="form-control-file" id="exampleFormControlFile1" (change)="onFileChange($event)" #fileInput>
 		</div>
 
 		<div class="form-group row">
@@ -111,7 +105,7 @@
 	</form>
 </div>
 
-<div class="buttons">
+<div class="buttons text-center">
 	<button class="btn btn-primary" (click)="goBack()" id="goBack">Back</button>
 	<button class="btn btn-secondary" (click)="resetForm()" id="resetForm">Reset</button>
 	<button class="btn btn-success" (click)="save(category)" id="save">Create</button>

@@ -9,15 +9,15 @@ import { Conference } from '../../model/conference';
 import { User } from '../../model/user';
 
 @Component({
-	selector: 'app-conferences-list',
-	templateUrl: './conferences-list.component.html',
-	styleUrls: ['./conferences-list.component.css'],
+	selector: 'app-visited-conferences',
+	templateUrl: './visited-conferences.component.html',
+	styleUrls: ['./visited-conferences.component.css'],
 	providers: [ ConferenceService ]
 })
-export class ConferencesListComponent implements OnInit {
+export class VisitedConferencesComponent implements OnInit {
 
 	show = false;
-    title = 'Conferences';
+    title = 'Recently Visited';
     conferences: Conference[] = [];
 	user: User;
 	favouritesConferences;
@@ -30,31 +30,21 @@ export class ConferencesListComponent implements OnInit {
 				 private tokenStorage: TokenStorageService) {  }
 
     ngOnInit() {
-		this.getAllConferences();
+		this.getUser();
+		//this.getVisitedConferences();
     }
 
     /**
-     * Получение списка всех конференций через conferenceService
+     * Получение списка посещенных конференций через conferenceService
      */
-    getAllConferences() {
-		/* получение всех конференций
-        this.conferenceService.readConferences()
+    getVisitedConferences(idUser) {
+		this.conferenceService.getVisitedConferences(idUser)
             .subscribe(conferences => {
 				this.conferences = conferences;
 				this.conferences.map(conference => {
 					conference.like = false;
 				});
-				this.getUser();
-            });
-		*/
-		// Получение опубликованных конференций
-		this.conferenceService.getConferencesByStatus(1)
-            .subscribe(conferences => {
-				this.conferences = conferences;
-				this.conferences.map(conference => {
-					conference.like = false;
-				});
-				this.getUser();
+				//this.getUser();
             });
     }
 	
@@ -62,6 +52,7 @@ export class ConferencesListComponent implements OnInit {
 		this.userService.getUserByUsername(this.tokenStorage.getUsername())
             .subscribe(user => {
 				this.user = user;
+				this.getVisitedConferences(user.id);
 				this.getFavouritesConferences(user);
             });
 	}
@@ -81,12 +72,10 @@ export class ConferencesListComponent implements OnInit {
 			});
     }
 	
-	
-	
 	like(conference) {
 		if(conference.like) { conference.like = false;
 		} else { conference.like = true; }
 		this.conferenceService.likeConference(conference.id, this.user.id).subscribe();
 	}
-	
+
 }

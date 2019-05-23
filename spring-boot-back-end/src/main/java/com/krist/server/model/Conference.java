@@ -34,7 +34,7 @@ public class Conference {
     private String title;
 	
 	@NotBlank
-    @Size(min = 3, max = 300)
+    @Size(min = 1, max = 300)
     private String description;
 	
 	@ManyToOne

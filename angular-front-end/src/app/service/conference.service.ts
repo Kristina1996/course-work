@@ -26,9 +26,12 @@ export class ConferenceService {
 	
 	private conferenceIdURL = 'http://localhost:8080/conferences/';
 	private updateConferenceURL = 'http://localhost:8080/updateconference';
-	private publishblockConferenceURL = 'http://localhost:8080/publishconference';
+	private editStatusURL = 'http://localhost:8080/editStatus';
 	
 	private paramCategoryURL = 'http://localhost:8080/categories/';
+	private likeConferenceURL = 'http://localhost:8080/like/';
+	private getConfByStatusURL = 'http://localhost:8080/conferences/status/';
+	private visitedConferencesURL = 'http://localhost:8080/visited/';
 
 	constructor( private _http: HttpClient ) { }
 	
@@ -36,8 +39,16 @@ export class ConferenceService {
 		return this._http.get<Conference[]>(this.conferencesURL);
     }
 	
+	getConferencesByStatus(status): Observable<Conference[]> {
+		return this._http.get<Conference[]>(this.getConfByStatusURL + status);
+    }
+	
 	getMyConferences(user: User): Observable<Conference[]> {
 		return this._http.get<Conference[]>(this.myConferencesURL + user.id);
+    }
+	
+	getVisitedConferences(idUser): Observable<Conference[]> {
+		return this._http.get<Conference[]>(this.visitedConferencesURL + idUser);
     }
 	
 	getFavouritesConferences(user): Observable<Conference[]> {
@@ -47,6 +58,7 @@ export class ConferenceService {
 	
 	createConference(conference: Conference, currentDate, user): Observable<Conference> {
 		conference.status = 0;
+		conference.visits = 0;
 		conference.creationDate = currentDate;
 		conference.author = user;
 		
@@ -57,11 +69,14 @@ export class ConferenceService {
 		return this._http.get<Category>(this.paramCategoryURL, id);
 	}
 	
-	/*
-	publishblockConference(id): Observable<Conference> {
-		return this._http.get(this.publishblockConferenceURL + id, { responseType: 'json' });
+	likeConference(idConference, idUser) {
+		return this._http.get<>(this.likeConferenceURL + idConference + "/" + idUser);
 	}
-	*/
+	
+	editStatus(conference: Conference): Observable<Conference> {
+		console.log(conference);
+		return this._http.post<Conference>(this.updateConferenceURL, conference, httpOptions);
+	}
 	
 	getConference(id): Observable<Conference> {
 		return this._http.get<Conference>(this.conferenceIdURL + id);

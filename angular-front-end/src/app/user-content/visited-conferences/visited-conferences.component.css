@@ -4,13 +4,6 @@
 	display: inline-block;
 }
 
-.btn-create {
-	margin-top: 5%;
-	margin-bottom: 3%;
-	display: inline-block;
-	float: right;
-}
-
 .conf {
 	transition: all 600ms ease;
     position: relative;
@@ -42,10 +35,11 @@
     height: auto;
     border-radius: 0;
 	transition: all 600ms ease;
-    background: #343a40;
+    background: #1D1D2B;
     z-index: 0;
     display: flex;
     flex-direction: column;
+    box-shadow: 0 1px 1rem rgba(10, 10, 25, 0.3);
 	color: #fff;
 }
 
@@ -58,19 +52,8 @@
 	font-size: 2em;
 }
 .glyphicon-heart {
-	color: indianred;
+	color: red;
 }
 .glyphicon-heart-empty:hover {
-	transform: scale(1.1);
-}
-
-.btn-view {
-	color: #fff;
-	font-size: 2em;
-	margin-right: 5%;
-}	
-
-.btn-view:hover {
-	color: darkcyan;
 	transform: scale(1.1);
 }

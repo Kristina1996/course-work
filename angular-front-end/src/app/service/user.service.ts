@@ -66,7 +66,6 @@ export class UserService {
 	
 	updateUser(user) {
 		user.role = [user.role];
-		//user.role = ['user'];
 		return this._http.post<string>(this.updateUserURL, user, httpOptions);
 	}
 	

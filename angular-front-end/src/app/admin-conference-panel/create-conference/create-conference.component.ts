@@ -75,6 +75,8 @@ export class CreateConferenceComponent implements OnInit {
      */
 	save(category) {
 		
+		console.log(this.create_conference_form.value);
+		
 		let currentDate = new Date();
 		
 		currentDate = this.datePipe.transform(currentDate, 'yyyy-MM-dd HH:mm');

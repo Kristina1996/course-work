@@ -12,24 +12,28 @@
     <div class="row">
         <table class='table table-hover table-responsive table-bordered'>
             <tr>
-				<th class="text-center"> Name </th>
-				<th class="text-center"> Surname </th>
-				<th class="text-center"> Username </th>
-				<th class="text-center"> Email </th>
-				<th class="text-center"> Role </th>
-				<th class="text-center"> Action </th>
+				<th class="text-center">Name</th>
+				<th class="text-center">Surname</th>
+				<th class="text-center">Username</th>
+				<th class="text-center">Email</th>
+				<th class="text-center">Role</th>
+				<th class="text-center">Action</th>
+				<th class="text-center">Photo</th>
             </tr>
 
             <tr *ngFor="let user of users">
-				<td class="text-center"> {{user.name}} </td>
-				<td class="text-center"> {{user.surname}} </td>
-				<td class="text-center"> {{user.username}} </td>
-				<td class="text-center"> {{user.email}} </td>
-				<td class="text-center"> {{user.roles[0].name}} </td>
+				<td class="text-center">{{user.name}}</td>
+				<td class="text-center">{{user.surname}}</td>
+				<td class="text-center">{{user.username}}</td>
+				<td class="text-center">{{user.email}}</td>
+				<td class="text-center">{{user.roles[0].name}}</td>
 				<td class="text-center">
 					<a routerLink="/edituser/{{user.id}}" style="margin-right: 5px;"><i class="far fa-edit ui-icons"></i></a>
 					<a (click)="deleteUser(user)"><i class="far fa-trash-alt ui-icons"></i></a>
                 </td>
+				<td class="text-center">
+					<img src="{{user.photo}}" class="img-round">
+				</td>
                   
             </tr>
         </table>

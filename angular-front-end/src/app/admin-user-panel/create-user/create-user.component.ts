@@ -17,6 +17,17 @@ export class CreateUserComponent implements OnInit {
 	create_user_form: FormGroup;
 	title = 'Create new user';
 	
+	/**
+	 * Метод для включения/выключения кнопки "Сохранить"
+     */
+	get buttonSaveDisabled() {
+		if (this.create_user_form.value.name !== '' && this.create_user_form.value.surname !== '' &&
+            this.create_user_form.value.username !== '' && this.create_user_form.value.email !== '' && 
+			this.create_user_form.get('role').touched) {
+			return true;
+		}
+	}
+	
 	constructor(
 		private route: ActivatedRoute,
 		private userService: UserService,

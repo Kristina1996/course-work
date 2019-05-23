@@ -34,6 +34,7 @@ export class StatsComponent implements OnInit {
 
 	ngOnInit() {
 		this.getUser();	
+		console.log(this.visitsConferences);
 	}
 	
 	getMyConferences() {

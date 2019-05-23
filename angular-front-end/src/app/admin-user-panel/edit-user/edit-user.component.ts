@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -19,28 +19,17 @@ export class EditUserComponent implements OnInit {
 	
 	@Input() user: User;
 	@Input() id;
+	@ViewChild('fileInput') fileInput: ElementRef;
 
     /**
 	 * Метод для включения/выключения кнопки "Сохранить"
      */
-	/* 
-	get buttonDisabled() {
-		if (this.update_user_form.value.age > 17 && this.update_user_form.value.name !== '' &&
-            	this.update_user_form.value.surname !== '' && this.update_user_form.value.position !== '') {
-			if (this.newFunction() === false || (this.newFunction() && this.update_user_form.value.inn !== '')) {
-                return true;
-            }
-		}
-	}
-	*/
-
-    /**
-	 * Метод для отображения инпута "ИНН"
-     */
-	newFunction() {
-		if (this.update_user_form.value.check) {
+	get buttonSaveDisabled() {
+		if (this.update_user_form.value.name !== '' && this.update_user_form.value.surname !== '' &&
+            this.update_user_form.value.username !== '' && this.update_user_form.value.email !== '' && 
+			this.update_user_form.get('role').touched) {
 			return true;
-		} else { return false; }
+		}
 	}
 
 	constructor(
@@ -96,9 +85,10 @@ export class EditUserComponent implements OnInit {
                     username: user.username,
 					password: user.password,
 					email: user.email,
-					photo: user.photo,
+					//photo: user.photo,
 					role: user.role
                 });
+				console.log(this.update_user_form.value);
             });
 	}
 
@@ -107,14 +97,6 @@ export class EditUserComponent implements OnInit {
      */
 	save() {
 		const id = +this.route.snapshot.paramMap.get('id');
-		
-		this.userService.getUser(id)
-            .subscribe(user => {
-                this.update_user_form.patchValue({
-                    password: user.password
-                });
-            });
-		
 		console.log(this.update_user_form.value);
 		
 		this.update_user_form.value.id = id;
@@ -125,6 +107,24 @@ export class EditUserComponent implements OnInit {
                  },
                  error => console.log(error)
              );
+	}
+	
+	/**
+	 * Коовертация изображения в base64
+     */
+	onFileChange(event) {
+		let reader = new FileReader();
+		if(event.target.files && event.target.files.length > 0) {
+			let file = event.target.files[0];
+			reader.readAsDataURL(file);
+			reader.onload = () => {
+				this.update_user_form.patchValue({
+					filename: file.name,
+					filetype: file.type,
+					photo: "data:" + file.type + ";base64," + reader.result.split(',')[1]
+				})
+			};
+		}
 	}
 
 }

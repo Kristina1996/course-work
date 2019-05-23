@@ -29,7 +29,6 @@ export class ViewConfComponent implements OnInit {
 		this.conferenceService.getConference(id)
 		.subscribe(conference => { 
 			this.conference = conference;
-			//this.conference["like"] = true;
 			console.log(this.conference);
 			
 		});

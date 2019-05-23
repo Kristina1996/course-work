@@ -24,21 +24,24 @@ public class ConferenceServiceImpl implements ConferenceService {
 	}
 	
 	@Override
-	public List<Conference> getMyConferences(Long id) {
-		//String EMAIL_QUERY = "SELECT * FROM conference WHERE idAuthor = ?";
-		
-		return repository.getMyConferences(id);
-		//return JdbcTemplate.queryForObject(EMAIL_QUERY, String.class, id);
-		
-		/*
-		EntityManager em = emf.createEntityManager();
-		List<Conference> results = em.createNativeQuery("SELECT * FROM conference WHERE idAuthor = ?").getResultList();
-		*/
+	public List<Conference> getConferencesByStatus(Integer status) {
+		return repository.getConferencesByStatus(status);
 	}
+	
+	@Override
+	public List<Conference> getMyConferences(Long id) {
+		return repository.getMyConferences(id);
+	}
+	
 	
 	@Override
 	public List<Conference> getFavouritesConferences(Long id) {
 		return repository.getFavouritesConferences(id);
+	}
+	
+	@Override
+	public List<Conference> getVisitedConferences(Integer id) {
+		return repository.getVisitedConferences(id);
 	}
 
 	@Override

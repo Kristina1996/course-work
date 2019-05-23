@@ -44,6 +44,18 @@ public class ConferenceController {
     public List<Conference> getAllConferences() {
         return service.getAllConferences();
     }
+	
+	@RequestMapping(value = "/conferences/status/{status}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Conference> getConferencesByStatus(@PathVariable("status") Integer status) {
+        return service.getConferencesByStatus(status);
+    }
+	
+	@RequestMapping(value = "/visited/{idUser}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Conference> getVisitedconferences(@PathVariable("idUser") Integer idUser) {
+        return service.getVisitedConferences(idUser);
+    }
 
 	//@PreAuthorize("hasRole('ADMIN') or hasRole('MODERATOR')")
     @RequestMapping(value = "/conferences/{id}", method = RequestMethod.GET)
@@ -56,7 +68,6 @@ public class ConferenceController {
     @RequestMapping(value = "/conferences", method = RequestMethod.POST)
     @ResponseBody
     public Conference createConference(@RequestBody Conference conference) {
-    	
         return service.create(conference);
     }
     
@@ -77,11 +88,6 @@ public class ConferenceController {
     @RequestMapping(value = "/myconferences/{id}", method = RequestMethod.GET)
     @ResponseBody
     public List<Conference> getMyConference(@PathVariable("id") Long id) {
-    	//User user = userService.getUserByID(id);
-    	//System.out.println(user);
-    	System.out.println("в контроллере");
-    	System.out.println("id:" + id);
-    	
         return service.getMyConferences(id);
     }
     

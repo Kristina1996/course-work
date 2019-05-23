@@ -52,3 +52,12 @@
 .sidebar-icon {
 	padding-right: 5px;
 }
+
+@media (max-width: 1170px) { 
+	.sidebar-sticky {
+		display: none !important;
+	}
+	.d-md-block {
+		display: none !important;
+	}
+}
